@@ -1,0 +1,11 @@
+Coding exercise: Scrabble
+
+Write a function that takes a string representing a list of letter tiles. Return the longest word that contains only the given tiles. Every tile does not have to be used, but every letter of the matching word must be a distinct tile: only the first example below matches "canary" since it has two A tiles.
+
+You may supply a word list or use the standard dictionary file at /usr/share/dict/words.  No need to develop a clever algorithm, but briefly describe the time complexity of your solution.
+
+Examples:
+scrabble("rancary")
+=> canary
+scrabble("rancry")
+=> carry
