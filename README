@@ -9,3 +9,8 @@ scrabble("rancary")
 => canary
 scrabble("rancry")
 => carry
+
+
+How to Play:
+
+`ruby play.rb`

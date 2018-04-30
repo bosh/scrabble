@@ -1,4 +1,4 @@
 module Algorithm
 end
 
-require 'algorithms/naive'
+require_relative 'algorithms/naive'
