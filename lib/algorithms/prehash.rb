@@ -26,11 +26,10 @@ class Algorithm::Prehash
   end
 
   def check_entry(input_entry)
-    @checked_subsets[input_entry.lexicographic] = true
-
     if found = @hash[input_entry.lexicographic]
       found
     else
+      @checked_subsets[input_entry.lexicographic] = true
       all_letters = input_entry.lexicographic.split('')
       uniq_letters = all_letters.uniq #This has a time cost but unique items in word-size arrays isn't going to be the issue here
 

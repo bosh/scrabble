@@ -19,3 +19,17 @@ How to Test:
 
 `bundle`
 `rspec`
+
+
+Discussion:
+N = size of dictionary,
+n = length of dictionary word being evaluated,
+m = length of user input
+
+In terms of time complexity, I'm not considering the time it takes to set up any of the match data. E.G. sorting the dictionary by length once, downcasing and sorting any individual words, etc. Similarly, I'm not including time costs for generating unique letter sets from strings or comparing two strings against one another - those can be written in O(m) ways but I don't know the complexity of the methods I used within the context of MRI.
+
+The naive algorithm at a high level just iterates over the entire dictionary, sorted by length. That's O(N) to start with, but it does have some quick exits - for instance if the dictionary word is longer than the user letters we have remaining. After that we check each letter in the dictionary word being checked to see if the user letters contain it, skipping user letter that aren't present in the dictionary word. Ignoring the fast exit, each word comparison involves n letter-checks in the best case (a match) or in the worst case, n+m comparisons. This works because we lexicographically sort from the beginning, so we never need to backtrack upon finding non-matching letters. So O(N) if string comparisons are O(1), or O(N*(n+m)) if using the character-by-character comparison algorithm.
+
+The hash algorithm almost seems like cheating, especially when just using Ruby's hash implementation instead of writing our own. We have to do N inserts, and use N space for storage (though I guess the naive array search does too) but then at lookup time, each check costs only O(1). So how many checks do we perform? One in the best case - a perfect match - but the worst case would be checking every combination of letters, which is 2^m. Duplicated letters reduce the number of distinct subset comparisons (via the deletion/subset queuing algorithm skipping repeated subsets), but that checked-set hash itself grows to have 2^m entries, which also ends up being significantly larger than the set of words in an English dictionary. Trying it myself with even 16 input characters ended up eating up more than 10 GB of memory for my example, and took ages.
+
+When the letters in m are a reasonable length or close to a word match, the hash beats the pants off the iteration, but when significant deletions are necessary, just getting down to a reasonable word-length takes longer than evaluating the entire dictionary.

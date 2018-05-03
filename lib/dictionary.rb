@@ -1,5 +1,5 @@
 class Dictionary
-  DEFAULT_PATH = "C:/Program Files (x86)/Git/share/dict/words"
+  DEFAULT_PATH = "/usr/share/dict/words"
   def self.from_usr
     words = File.read(DEFAULT_PATH).split("\n").map(&:downcase)
     new(words)
