@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Algorithm::Naive do
+describe Algorithm::Prehash do
   subject { described_class.new(Dictionary.new(['a', 'abb', 'abc', 'abcd'])) }
 
   def find(letters)
@@ -21,7 +21,7 @@ describe Algorithm::Naive do
     end
 
     it 'finds the longest subset match' do
-      expect(find('abbc').word).to eq('abb')
+      expect(find('abbc').word).to eq('abc')
     end
   end
 end

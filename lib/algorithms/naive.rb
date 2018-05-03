@@ -3,8 +3,7 @@ class Algorithm::Naive
     @dictionary = dictionary
   end
 
-  def find(input)
-    input_entry = Entry.new(input)
+  def find(input_entry)
     @dictionary.all_by_length.detect do |entry|
       check_anagram(entry.lexicographic.split(''), input_entry.lexicographic.split(''))
     end

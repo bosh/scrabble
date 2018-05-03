@@ -19,17 +19,25 @@ class Scrabble
   def get_letters
     puts INSTRUCTIONS
     data = gets.split(' ')
-    # @algorithm = (data[0].to_i == 1 ? naive_algorithm : nil)
+    @algorithm = (data[0].to_i == 2 ? prehash_algorithm : naive_algorithm)
     data[1]
   end
 
   def find_anagram(input)
-    if solution = @algorithm.find(input)
+    if solution = @algorithm.find(Entry.new(input))
       "#{solution.word} - #{solution.length}"
+    else
+      ''
     end
   end
 
   private
+
+  # No reason to do setup work for the algo handlers until they are requested,
+  # no reason to throw away the work if the user switches away
+  def prehash_algorithm
+    @prehash ||= Algorithm::Prehash.new(dictionary)
+  end
 
   def naive_algorithm
   	@naive ||= Algorithm::Naive.new(dictionary)
