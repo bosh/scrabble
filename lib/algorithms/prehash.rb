@@ -7,6 +7,7 @@ class Algorithm::Prehash
   def find(input_entry)
     @queue = [input_entry]
     @checked_subsets = {}
+    @result = nil
     while @result.nil? && @queue.any?
       @result = check_entry(@queue.shift)
     end

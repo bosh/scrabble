@@ -24,7 +24,6 @@ describe Scrabble do
     let(:text) { "2 aabbcc\n" }
 
     before do
-      allow(subject).to receive(:puts)
       allow(subject).to receive(:gets).and_return(text)
     end
 

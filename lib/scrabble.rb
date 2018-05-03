@@ -3,12 +3,10 @@ require_relative 'dictionary'
 require_relative 'algorithms'
 
 class Scrabble
-  INSTRUCTIONS = 'Please query with "<Algo#> <letters>" without <>:'
-
   attr_reader :dictionary, :algorithm
 
-  def initialize
-  	@dictionary = Dictionary.new
+  def initialize(dict = Dictionary.new)
+  	@dictionary = dict
     @algorithm = naive_algorithm
   end
 
@@ -17,7 +15,6 @@ class Scrabble
   end
 
   def get_letters
-    puts INSTRUCTIONS
     data = gets.split(' ')
     @algorithm = (data[0].to_i == 2 ? prehash_algorithm : naive_algorithm)
     data[1]
@@ -43,12 +40,8 @@ class Scrabble
   	@naive ||= Algorithm::Naive.new(dictionary)
   end
 
-  #My Windows system was behaving strangely with the direct mocks
+  #My Windows system was behaving strangely with the direct mock
   def gets(*args)
     Kernel.gets(*args)
-  end
-
-  def puts(*args)
-    Kernel.puts(*args)
   end
 end

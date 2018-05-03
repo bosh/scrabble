@@ -23,5 +23,10 @@ describe Algorithm::Prehash do
     it 'finds the longest subset match' do
       expect(find('abbc').word).to eq('abc')
     end
+
+    it 'works with multiple finds' do
+      expect(find('abbc').word).to eq('abc')
+      expect(find('abbcd').word).to eq('abcd')
+    end
   end
 end

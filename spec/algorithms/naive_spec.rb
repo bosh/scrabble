@@ -23,5 +23,10 @@ describe Algorithm::Naive do
     it 'finds the longest subset match' do
       expect(find('abbc').word).to eq('abb')
     end
+
+    it 'works with multiple finds' do
+      expect(find('abbc').word).to eq('abb')
+      expect(find('abbcd').word).to eq('abcd')
+    end
   end
 end
